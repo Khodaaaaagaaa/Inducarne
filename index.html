@@ -1,0 +1,665 @@
+ 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inducarne — Industria Cárnica Nacional · Santa Cruz, Bolivia</title>
+  <meta name="description" content="Matadero Frigorífico Industrial INDUCARNE S.R.L. Faena, desposte y distribución de carne bovina refrigerada de alta calidad. 350 reses por día. Santa Cruz de la Sierra, Bolivia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            burg: { 950:'#1A0505', 900:'#2D0A0A', 800:'#4A1010', 700:'#6B1A1A', 600:'#8B2424', 500:'#A83232' },
+            gold: { 600:'#B8962E', 500:'#C9A84C', 400:'#D4B96A', 300:'#E0CE95', 200:'#EDE4C0' },
+            ink:  { 950:'#0C0A09', 900:'#1C1917', 800:'#292524', 700:'#44403C', 600:'#57534E', 500:'#78716C', 400:'#A8A29E', 300:'#D6D3D1', 200:'#E7E5E4', 100:'#F5F5F4', 50:'#FAFAF9' },
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"','Georgia','serif'],
+            sans:  ['Montserrat','system-ui','sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    body{font-family:'Montserrat',sans-serif;background:#FAFAF9;color:#1C1917;overflow-x:hidden}
+
+    #nav{transition:all .4s cubic-bezier(.4,0,.2,1)}
+    #nav.scrolled{background:rgba(28,25,23,.93)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(201,168,76,.15)}
+
+    .hero-bg{background:linear-gradient(135deg,rgba(45,10,10,.9) 0%,rgba(28,25,23,.75) 50%,rgba(45,10,10,.85) 100%),url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80&fit=crop') center/cover no-repeat}
+
+    .goldline{display:inline-block;width:48px;height:2px;background:linear-gradient(90deg,#C9A84C,#E0CE95);margin-bottom:16px}
+
+    .fade{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+    .fade.on{opacity:1;transform:none}
+
+    .pcard{transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .4s ease;position:relative;overflow:hidden}
+    .pcard:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(45,10,10,.2)}
+    .pcard .ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(45,10,10,.85) 0%,rgba(45,10,10,.1) 60%,transparent 100%);transition:background .4s ease}
+    .pcard:hover .ov{background:linear-gradient(to top,rgba(45,10,10,.95) 0%,rgba(45,10,10,.45) 70%,rgba(45,10,10,.1) 100%)}
+    .pcard .det{max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease;opacity:0}
+    .pcard:hover .det{max-height:80px;opacity:1}
+
+    .stat{position:relative;overflow:hidden;transition:transform .3s ease}
+    .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);transform:scaleX(0);transition:transform .4s ease}
+    .stat:hover::before{transform:scaleX(1)}
+    .stat:hover{transform:translateY(-4px)}
+
+    #mmenu{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+    #mmenu.open{max-height:500px}
+
+    .btn-g{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C9A84C,#D4B96A);color:#1C1917;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:2px;transition:all .3s ease;cursor:pointer;border:none;text-decoration:none;box-shadow:0 4px 16px rgba(201,168,76,.3)}
+    .btn-g:hover{background:linear-gradient(135deg,#D4B96A,#E0CE95);box-shadow:0 8px 24px rgba(201,168,76,.45);transform:translateY(-2px)}
+    .btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#C9A84C;border:1.5px solid #C9A84C;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:13px 32px;border-radius:2px;transition:all .3s ease;cursor:pointer;text-decoration:none}
+    .btn-o:hover{background:rgba(201,168,76,.1);box-shadow:0 0 0 1px #C9A84C}
+
+    .finp{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);color:#F5F5F4;font-family:'Montserrat',sans-serif;font-size:14px;padding:14px 16px;border-radius:2px;transition:border-color .3s ease,background .3s ease;outline:none}
+    .finp:focus{border-color:#C9A84C;background:rgba(201,168,76,.05)}
+    .finp::placeholder{color:rgba(214,211,209,.45)}
+    .finp option{background:#1C1917;color:#F5F5F4}
+
+    .marquee{display:flex;gap:56px;animation:mq 22s linear infinite;width:max-content}
+    @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:#1C1917}
+    ::-webkit-scrollbar-thumb{background:#6B1A1A;border-radius:3px}
+    ::-webkit-scrollbar-thumb:hover{background:#C9A84C}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50" style="background:transparent">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-burg-700 border border-gold-500/30 flex items-center justify-center">
+          <span class="text-gold-400 font-serif font-bold text-xl leading-none">I</span>
+        </div>
+        <div>
+          <div class="text-white font-serif font-semibold text-lg leading-none tracking-wide">INDUCARNE</div>
+          <div class="text-gold-400/60 text-[9px] font-sans font-medium tracking-[.2em] uppercase mt-0.5">Industria Cárnica Nacional</div>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#nosotros"  class="text-ink-300 hover:text-gold-400 text-[11px] font-medium tracking-[.14em] uppercase transition-colors">Nosotros</a>
+        <a href="#productos" class="text-ink-300 hover:text-gold-400 text-[11px] font-medium tracking-[.14em] uppercase transition-colors">Productos</a>
+        <a href="#servicios" class="text-ink-300 hover:text-gold-400 text-[11px] font-medium tracking-[.14em] uppercase transition-colors">Servicios</a>
+        <a href="#ganaderos" class="text-ink-300 hover:text-gold-400 text-[11px] font-medium tracking-[.14em] uppercase transition-colors">Ganaderos</a>
+        <a href="#inocuidad" class="text-ink-300 hover:text-gold-400 text-[11px] font-medium tracking-[.14em] uppercase transition-colors">Inocuidad</a>
+        <a href="#contacto" class="btn-g">Cotizar</a>
+      </div>
+      <button id="hbg" class="lg:hidden flex flex-col gap-1.5 p-2" aria-label="Menú">
+        <span class="hb w-6 h-0.5 bg-gold-400 transition-all duration-300"></span>
+        <span class="hb w-6 h-0.5 bg-gold-400 transition-all duration-300"></span>
+        <span class="hb w-4 h-0.5 bg-gold-400 transition-all duration-300"></span>
+      </button>
+    </div>
+    <div id="mmenu" class="lg:hidden border-t border-gold-500/20">
+      <div class="py-6 flex flex-col gap-4">
+        <a href="#nosotros"  class="text-ink-300 hover:text-gold-400 text-sm font-medium tracking-wider uppercase" onclick="cM()">Nosotros</a>
+        <a href="#productos" class="text-ink-300 hover:text-gold-400 text-sm font-medium tracking-wider uppercase" onclick="cM()">Productos</a>
+        <a href="#servicios" class="text-ink-300 hover:text-gold-400 text-sm font-medium tracking-wider uppercase" onclick="cM()">Servicios</a>
+        <a href="#ganaderos" class="text-ink-300 hover:text-gold-400 text-sm font-medium tracking-wider uppercase" onclick="cM()">Ganaderos</a>
+        <a href="#inocuidad" class="text-ink-300 hover:text-gold-400 text-sm font-medium tracking-wider uppercase" onclick="cM()">Inocuidad</a>
+        <a href="#contacto"  class="btn-g text-center justify-center mt-2" onclick="cM()">Cotizar ahora</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-bg min-h-screen flex flex-col justify-end relative overflow-hidden">
+  <div class="absolute left-1/2 top-0 w-px h-24 bg-gradient-to-b from-transparent to-gold-500/40 hidden lg:block"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-28 pt-44">
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-8 h-px bg-gold-500"></div>
+        <span class="text-gold-400 text-xs font-medium tracking-[.25em] uppercase">Santa Cruz de la Sierra · Bolivia</span>
+      </div>
+      <h1 class="font-serif text-5xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
+        Excelencia en<br/><em class="text-gold-400 not-italic">Proteína Bovina</em>
+      </h1>
+      <p class="text-ink-300 text-lg lg:text-xl font-light leading-relaxed mb-4 max-w-xl">
+        Faena, desposte y distribución de carne bovina refrigerada. Trazabilidad completa desde el campo hasta su negocio.
+      </p>
+      <p class="text-ink-400 text-sm font-medium tracking-widest uppercase mb-12">
+        Certificado SENASAG &nbsp;·&nbsp; 350 reses / día &nbsp;·&nbsp; +20 años en el mercado
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contacto" class="btn-g">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Solicitar cotización
+        </a>
+        <a href="#productos" class="btn-o">
+          Ver catálogo
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-ink-50 to-transparent"></div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+    <span class="text-ink-400 text-[10px] tracking-[.2em] uppercase">Explorar</span>
+    <div class="w-px h-8 bg-gradient-to-b from-ink-400 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<!-- TRUST MARQUEE -->
+<section class="bg-ink-900 border-y border-gold-500/20 py-5 overflow-hidden">
+  <div class="marquee">
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Certificado SENASAG</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Buenas Prácticas de Manufactura</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Bienestar Animal Garantizado</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Cadena de Frío Certificada</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Trazabilidad Res a Res</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Inspección Veterinaria Permanente</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Certificado SENASAG</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Buenas Prácticas de Manufactura</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Bienestar Animal Garantizado</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Cadena de Frío Certificada</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Trazabilidad Res a Res</span>
+    <span class="text-ink-400 text-xs font-medium tracking-[.2em] uppercase whitespace-nowrap flex items-center gap-3"><span class="w-1 h-1 rounded-full bg-gold-500"></span>Inspección Veterinaria Permanente</span>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="py-28 bg-ink-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-20 fade">
+      <div class="goldline mx-auto"></div>
+      <p class="text-ink-500 text-xs tracking-[.25em] uppercase font-medium mb-3">Capacidad Industrial</p>
+      <h2 class="font-serif text-4xl lg:text-5xl font-bold text-ink-900">Nuestra Escala de Operación</h2>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="stat bg-white border border-ink-200 p-8 text-center fade" style="transition-delay:.1s">
+        <div class="text-5xl lg:text-6xl font-serif font-bold text-burg-700 mb-2"><span class="cnt" data-t="350">0</span></div>
+        <div class="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-3">reses / día</div>
+        <div class="w-8 h-px bg-gold-300 mx-auto mb-3"></div>
+        <p class="text-ink-500 text-sm">Capacidad de sacrificio diaria en planta</p>
+      </div>
+      <div class="stat bg-white border border-ink-200 p-8 text-center fade" style="transition-delay:.2s">
+        <div class="text-5xl lg:text-6xl font-serif font-bold text-burg-700 mb-2"><span class="cnt" data-t="500">0</span></div>
+        <div class="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-3">reses stock</div>
+        <div class="w-8 h-px bg-gold-300 mx-auto mb-3"></div>
+        <p class="text-ink-500 text-sm">17 cámaras frigoríficas de almacenamiento</p>
+      </div>
+      <div class="stat bg-ink-900 border border-gold-500/30 p-8 text-center fade" style="transition-delay:.3s">
+        <div class="text-5xl lg:text-6xl font-serif font-bold text-gold-400 mb-2">5.000</div>
+        <div class="text-gold-500/70 text-xs font-semibold tracking-widest uppercase mb-3">m² construidos</div>
+        <div class="w-8 h-px bg-gold-700/50 mx-auto mb-3"></div>
+        <p class="text-ink-400 text-sm">Infraestructura industrial certificada</p>
+      </div>
+      <div class="stat bg-white border border-ink-200 p-8 text-center fade" style="transition-delay:.4s">
+        <div class="text-5xl lg:text-6xl font-serif font-bold text-burg-700 mb-2"><span class="cnt" data-t="170">0</span></div>
+        <div class="text-gold-500 text-xs font-semibold tracking-widest uppercase mb-3">profesionales</div>
+        <div class="w-8 h-px bg-gold-300 mx-auto mb-3"></div>
+        <p class="text-ink-500 text-sm">Equipo especializado en inocuidad</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-6 mt-6">
+      <div class="stat bg-burg-800 p-6 text-center fade" style="transition-delay:.5s">
+        <div class="text-3xl font-serif font-bold text-gold-400 mb-1">22.575 m²</div>
+        <p class="text-ink-400 text-sm">Superficie total del terreno</p>
+      </div>
+      <div class="stat bg-burg-800 p-6 text-center fade" style="transition-delay:.55s">
+        <div class="text-3xl font-serif font-bold text-gold-400 mb-1">30 ton.</div>
+        <p class="text-ink-400 text-sm">Capacidad de congelado</p>
+      </div>
+      <div class="stat bg-burg-800 p-6 text-center fade" style="transition-delay:.6s">
+        <div class="text-3xl font-serif font-bold text-gold-400 mb-1">+20 años</div>
+        <p class="text-ink-400 text-sm">En la industria cárnica boliviana</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="py-28 bg-ink-900 relative overflow-hidden">
+  <div class="absolute top-0 right-0 w-96 h-96 opacity-5" style="background:radial-gradient(circle,#C9A84C 0%,transparent 70%)"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade">
+        <div class="goldline"></div>
+        <p class="text-ink-400 text-xs tracking-[.25em] uppercase font-medium mb-3">Nuestra Historia</p>
+        <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white leading-tight mb-8">
+          La Cadena Cárnica<br/>más <em class="text-gold-400 not-italic">Confiable</em><br/>de Bolivia
+        </h2>
+        <p class="text-ink-300 leading-relaxed mb-6">El Matadero Frigorífico Industrial INDUCARNE S.R.L. está ubicado en el parque industrial de Santa Cruz de la Sierra. En sus modernas instalaciones presta el Servicio de Faena, Comercialización y Distribución de carne bovina refrigerada seleccionada, proveniente de los mejores ganaderos de la región.</p>
+        <p class="text-ink-400 leading-relaxed mb-10">Somos una empresa boliviana integrada a la cadena cárnica del país, con el objetivo de ser un referente nacional, facilitando al productor ganadero llegar con productos de alta calidad al consumidor final.</p>
+        <div class="grid grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-burg-800 border border-gold-500/30 flex items-center justify-center mx-auto mb-3">
+              <svg class="text-gold-400 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/></svg>
+            </div>
+            <div class="text-white text-sm font-semibold mb-1">Calidad</div>
+            <div class="text-ink-500 text-xs">Sistema Integrado</div>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 bg-burg-800 border border-gold-500/30 flex items-center justify-center mx-auto mb-3">
+              <svg class="text-gold-400 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <div class="text-white text-sm font-semibold mb-1">Sustentabilidad</div>
+            <div class="text-ink-500 text-xs">Impacto Ambiental</div>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 bg-burg-800 border border-gold-500/30 flex items-center justify-center mx-auto mb-3">
+              <svg class="text-gold-400 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+            </div>
+            <div class="text-white text-sm font-semibold mb-1">Bienestar</div>
+            <div class="text-ink-500 text-xs">Animal Primero</div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 fade" style="transition-delay:.2s">
+        <div class="relative h-72 overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600&q=80&fit=crop" alt="Planta industrial Inducarne" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent"></div>
+        </div>
+        <div class="relative h-72 mt-8 overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=600&q=80&fit=crop" alt="Cortes bovinos premium" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent"></div>
+        </div>
+        <div class="relative h-48 col-span-2 overflow-hidden rounded-sm">
+          <img src="https://images.unsplash.com/photo-1561043433-9265f73e685f?w=800&q=80&fit=crop" alt="Distribución frigorífica Inducarne" class="w-full h-full object-cover" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent"></div>
+          <div class="absolute bottom-4 left-4"><p class="text-white text-xs font-medium tracking-wider uppercase">Distribución · Cadena de Frío</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="py-28 bg-ink-100">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-20 fade">
+      <div class="goldline mx-auto"></div>
+      <p class="text-ink-500 text-xs tracking-[.25em] uppercase font-medium mb-3">Catálogo</p>
+      <h2 class="font-serif text-4xl lg:text-5xl font-bold text-ink-900 mb-4">Nuestros Productos</h2>
+      <p class="text-ink-500 max-w-xl mx-auto leading-relaxed">Cortes bovinos de alta calidad, procesados bajo estrictos estándares SENASAG y distribuidos con cadena de frío garantizada.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="pcard rounded-sm group cursor-pointer fade" style="transition-delay:.1s">
+        <div class="relative h-72">
+          <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80&fit=crop" alt="Carne bovina refrigerada" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="ov"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase mb-1">Producto Principal</div>
+            <h3 class="text-white font-serif text-xl font-semibold mb-1">Carne Refrigerada</h3>
+            <div class="det"><p class="text-ink-300 text-xs leading-relaxed mt-2">Bollo brazo, bollo chico, cuadrada, cuadril, lomito, peceto, punta de solomo, colita de cuadril, lomo completo.</p></div>
+            <div class="flex items-center gap-2 mt-3"><span class="text-gold-400 text-xs font-medium">Ver cortes</span><svg class="text-gold-400 w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard rounded-sm group cursor-pointer fade" style="transition-delay:.15s">
+        <div class="relative h-72">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80&fit=crop" alt="Carne madurada premium" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="ov"></div>
+          <div class="absolute top-4 right-4 bg-gold-500 text-ink-900 text-[9px] font-bold tracking-[.15em] uppercase px-3 py-1">Premium</div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase mb-1">Especialidad</div>
+            <h3 class="text-white font-serif text-xl font-semibold mb-1">Carne Madurada</h3>
+            <div class="det"><p class="text-ink-300 text-xs leading-relaxed mt-2">Proceso de maduración controlada que potencia la terneza y el sabor. Selección de las mejores piezas bovinas.</p></div>
+            <div class="flex items-center gap-2 mt-3"><span class="text-gold-400 text-xs font-medium">Más información</span><svg class="text-gold-400 w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard rounded-sm group cursor-pointer fade" style="transition-delay:.2s">
+        <div class="relative h-72">
+          <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600&q=80&fit=crop&crop=bottom" alt="Cortes traseros bovinos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="ov"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase mb-1">Categoría</div>
+            <h3 class="text-white font-serif text-xl font-semibold mb-1">Cortes Traseros</h3>
+            <div class="det"><p class="text-ink-300 text-xs leading-relaxed mt-2">Los mejores cortes de la parte trasera. Alta demanda en restaurantes y supermercados del país.</p></div>
+            <div class="flex items-center gap-2 mt-3"><span class="text-gold-400 text-xs font-medium">Ver especificaciones</span><svg class="text-gold-400 w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard rounded-sm group cursor-pointer fade" style="transition-delay:.25s">
+        <div class="relative h-72">
+          <img src="https://images.unsplash.com/photo-1551135049-8a33b5883817?w=600&q=80&fit=crop" alt="Cortes delanteros bovinos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="ov"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase mb-1">Categoría</div>
+            <h3 class="text-white font-serif text-xl font-semibold mb-1">Cortes Delanteros</h3>
+            <div class="det"><p class="text-ink-300 text-xs leading-relaxed mt-2">Paleta, cogote, asado, pecho y más. Ideales para procesamiento industrial y consumo doméstico.</p></div>
+            <div class="flex items-center gap-2 mt-3"><span class="text-gold-400 text-xs font-medium">Ver especificaciones</span><svg class="text-gold-400 w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard rounded-sm group cursor-pointer fade" style="transition-delay:.3s">
+        <div class="relative h-72">
+          <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=80&fit=crop" alt="Menudos procesados" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="ov"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase mb-1">Subproductos</div>
+            <h3 class="text-white font-serif text-xl font-semibold mb-1">Menudos Procesados</h3>
+            <div class="det"><p class="text-ink-300 text-xs leading-relaxed mt-2">Subproductos bovinos procesados bajo normas de inocuidad SENASAG. Envasados para distribución mayorista.</p></div>
+            <div class="flex items-center gap-2 mt-3"><span class="text-gold-400 text-xs font-medium">Más información</span><svg class="text-gold-400 w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-ink-900 border border-gold-500/30 rounded-sm p-8 flex flex-col justify-between fade" style="transition-delay:.35s">
+        <div>
+          <div class="w-12 h-12 bg-burg-800 border border-gold-500/30 flex items-center justify-center mb-6">
+            <svg class="text-gold-400 w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h7.5c.621 0 1.125-.504 1.125-1.125m-9.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-7.5A1.125 1.125 0 0 1 12 18.375m9.75-12.75c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125m19.5 0v1.5c0 .621-.504 1.125-1.125 1.125M2.25 5.625v1.5c0 .621.504 1.125 1.125 1.125m0 0h17.25m-17.25 0h7.5c.621 0 1.125.504 1.125 1.125M3.375 8.25c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m17.25-3.75h-7.5c-.621 0-1.125.504-1.125 1.125m8.625-1.125c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h7.5"/></svg>
+          </div>
+          <h3 class="font-serif text-2xl font-bold text-white mb-3">Catálogo Completo</h3>
+          <p class="text-ink-400 text-sm leading-relaxed mb-6">Descargá nuestro catálogo completo con especificaciones técnicas, temperaturas y cortes disponibles para mayoristas.</p>
+        </div>
+        <a href="#contacto" class="btn-g text-center justify-center">Solicitar catálogo PDF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-20 fade">
+      <div class="goldline mx-auto"></div>
+      <p class="text-ink-500 text-xs tracking-[.25em] uppercase font-medium mb-3">Lo que ofrecemos</p>
+      <h2 class="font-serif text-4xl lg:text-5xl font-bold text-ink-900">Nuestros Servicios</h2>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="group fade" style="transition-delay:.1s">
+        <div class="relative overflow-hidden h-64 rounded-sm mb-6">
+          <img src="https://images.unsplash.com/photo-1599021419847-d8a7a6aba5b4?w=600&q=80&fit=crop" alt="Servicio faena bovina" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-5"><span class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase">Servicio 01</span></div>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-ink-900 mb-3">Faena Bovina</h3>
+        <p class="text-ink-500 leading-relaxed text-sm mb-4">Servicio de faena confiable con trazabilidad completa res a res. Desde la recepción del ganado, pesaje individual y destino de venta. Clasificación e inspección según normativa SENASAG.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Corrales para 500 reses</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Líneas diferenciadas (sucia/intermedia/limpia)</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Inspección veterinaria permanente</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>350 reses/día de capacidad</li>
+        </ul>
+      </div>
+      <div class="group fade" style="transition-delay:.2s">
+        <div class="relative overflow-hidden h-64 rounded-sm mb-6">
+          <img src="https://images.unsplash.com/photo-1588347785102-2944afe6b786?w=600&q=80&fit=crop" alt="Servicio de desposte" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-5"><span class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase">Servicio 02</span></div>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-ink-900 mb-3">Servicio de Desposte</h3>
+        <p class="text-ink-500 leading-relaxed text-sm mb-4">Área de desposte equipada para despiece de la canal, cortes a pedido y carne industrial (trimming). Procesos elaborados bajo estrictas normas de inocuidad SENASAG.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Cortes a pedido según especificación</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Empaque, etiquetado y despacho</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Carne industrial (trimming)</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Personal técnico especializado</li>
+        </ul>
+      </div>
+      <div class="group fade" style="transition-delay:.3s">
+        <div class="relative overflow-hidden h-64 rounded-sm mb-6">
+          <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&q=80&fit=crop" alt="Logística frigorífica" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/80 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-5"><span class="text-gold-400 text-[10px] font-semibold tracking-[.2em] uppercase">Servicio 03</span></div>
+        </div>
+        <h3 class="font-serif text-2xl font-bold text-ink-900 mb-3">Logística Frigorífica</h3>
+        <p class="text-ink-500 leading-relaxed text-sm mb-4">Flota de transporte frigorífico propio para distribución manteniendo la cadena de frío hasta la entrega final. Puntualidad garantizada como parte de nuestra calidad de servicio.</p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Flota frigorífica propia</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Cadena de frío ininterrumpida</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>Cobertura regional Santa Cruz</li>
+          <li class="flex items-center gap-2 text-sm text-ink-600"><span class="w-1.5 h-1.5 rounded-full bg-gold-500 flex-shrink-0"></span>17 cámaras de almacenamiento</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GANADEROS -->
+<section id="ganaderos" class="py-28 relative overflow-hidden" style="background:linear-gradient(135deg,#2D0A0A 0%,#1C1917 60%,#2D0A0A 100%)">
+  <div class="absolute inset-0 opacity-10" style="background-image:url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=1200&q=40&fit=crop');background-size:cover;background-position:center"></div>
+  <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(45,10,10,.95) 0%,rgba(28,25,23,.9) 60%,rgba(45,10,10,.95) 100%)"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade">
+        <div class="goldline"></div>
+        <p class="text-ink-400 text-xs tracking-[.25em] uppercase font-medium mb-3">Para Productores</p>
+        <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">¿Sos <em class="text-gold-400 not-italic">Ganadero</em>?<br/>Trabajemos juntos.</h2>
+        <p class="text-ink-300 leading-relaxed mb-8">En INDUCARNE tenemos una política de puertas abiertas que transparenta nuestro trabajo. Brindamos servicio de atención totalmente personalizado, asegurando el mejor rendimiento, precio justo y puntualidad de pagos.</p>
+        <div class="grid gap-4 mb-10">
+          <div class="flex items-start gap-4 p-4 bg-white/5 border border-gold-500/20 rounded-sm">
+            <div class="w-10 h-10 bg-burg-800 flex items-center justify-center flex-shrink-0"><svg class="text-gold-400 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div>
+            <div><div class="text-white font-semibold text-sm mb-1">Precio Justo y Transparente</div><div class="text-ink-400 text-sm">Pesaje res a res. Sin sorpresas ni descuentos ocultos.</div></div>
+          </div>
+          <div class="flex items-start gap-4 p-4 bg-white/5 border border-gold-500/20 rounded-sm">
+            <div class="w-10 h-10 bg-burg-800 flex items-center justify-center flex-shrink-0"><svg class="text-gold-400 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg></div>
+            <div><div class="text-white font-semibold text-sm mb-1">Logística de Transporte Incluida</div><div class="text-ink-400 text-sm">Organizamos el traslado desde cualquier zona ganadera de Bolivia.</div></div>
+          </div>
+          <div class="flex items-start gap-4 p-4 bg-white/5 border border-gold-500/20 rounded-sm">
+            <div class="w-10 h-10 bg-burg-800 flex items-center justify-center flex-shrink-0"><svg class="text-gold-400 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg></div>
+            <div><div class="text-white font-semibold text-sm mb-1">Asesoramiento Técnico</div><div class="text-ink-400 text-sm">Soporte en engorde del ganado, manejo y contactos comerciales.</div></div>
+          </div>
+        </div>
+        <a href="#contacto" class="btn-g">Contactar al equipo ganadero</a>
+      </div>
+      <div class="fade flex flex-col items-start" style="transition-delay:.2s">
+        <div class="relative p-10 border border-gold-500/30 bg-white/5 backdrop-blur-sm rounded-sm w-full">
+          <div class="absolute -top-4 -left-4 text-gold-500/20 font-serif text-9xl leading-none select-none">"</div>
+          <p class="font-serif text-xl text-white leading-relaxed italic relative z-10 mb-6">"Brindamos asesoramiento en engorde del ganado, manejo y contactos comerciales. Personal capacitado para dar soporte técnico y sanitario al productor ganadero."</p>
+          <div class="flex items-center gap-3"><div class="w-8 h-px bg-gold-500"></div><span class="text-gold-400 text-xs font-semibold tracking-widest uppercase">Equipo Inducarne</span></div>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-4 w-full">
+          <div class="p-5 bg-white/5 border border-gold-500/20 rounded-sm text-center"><div class="text-gold-400 font-serif text-3xl font-bold mb-1">500</div><div class="text-ink-400 text-xs uppercase tracking-wider">Capacidad corrales</div></div>
+          <div class="p-5 bg-white/5 border border-gold-500/20 rounded-sm text-center"><div class="text-gold-400 font-serif text-3xl font-bold mb-1">100%</div><div class="text-ink-400 text-xs uppercase tracking-wider">Trazabilidad</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INOCUIDAD -->
+<section id="inocuidad" class="py-28 bg-ink-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade order-2 lg:order-1">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white border border-ink-200 p-6 rounded-sm"><div class="w-10 h-10 bg-burg-100 flex items-center justify-center mb-4"><svg class="text-burg-700 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div><h4 class="font-semibold text-ink-900 text-sm mb-2">SENASAG Certificado</h4><p class="text-ink-500 text-xs leading-relaxed">Inspecciones ante y post mortem según normativa oficial vigente.</p></div>
+          <div class="bg-white border border-ink-200 p-6 rounded-sm"><div class="w-10 h-10 bg-burg-100 flex items-center justify-center mb-4"><svg class="text-burg-700 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5"/></svg></div><h4 class="font-semibold text-ink-900 text-sm mb-2">BPM Implementado</h4><p class="text-ink-500 text-xs leading-relaxed">Buenas Prácticas de Manufactura en cada etapa del proceso.</p></div>
+          <div class="bg-white border border-ink-200 p-6 rounded-sm"><div class="w-10 h-10 bg-burg-100 flex items-center justify-center mb-4"><svg class="text-burg-700 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"/></svg></div><h4 class="font-semibold text-ink-900 text-sm mb-2">Cadena de Frío</h4><p class="text-ink-500 text-xs leading-relaxed">17 cámaras frigoríficas. Temperatura controlada del sacrificio a la entrega.</p></div>
+          <div class="bg-burg-800 border border-burg-700 p-6 rounded-sm"><div class="w-10 h-10 bg-burg-900 flex items-center justify-center mb-4"><svg class="text-gold-400 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg></div><h4 class="font-semibold text-white text-sm mb-2">Trazabilidad Total</h4><p class="text-ink-400 text-xs leading-relaxed">Seguimiento res a res. El ganadero puede rastrear su ganado en cada etapa.</p></div>
+        </div>
+      </div>
+      <div class="fade order-1 lg:order-2" style="transition-delay:.2s">
+        <div class="goldline"></div>
+        <p class="text-ink-500 text-xs tracking-[.25em] uppercase font-medium mb-3">Inocuidad Alimentaria</p>
+        <h2 class="font-serif text-4xl lg:text-5xl font-bold text-ink-900 leading-tight mb-6">Calidad que se <em class="text-burg-700 not-italic">Certifica</em>,<br/>no solo se declara.</h2>
+        <p class="text-ink-500 leading-relaxed mb-6">INDUCARNE implementa Buenas Prácticas de Manufactura con procedimientos que garantizan la calidad e inocuidad en cada producto. La línea de faena está claramente delimitada en áreas sucias, intermedias y limpias, evitando contaminación cruzada.</p>
+        <p class="text-ink-500 leading-relaxed mb-8">Nuestros profesionales especializados en procesamiento de alimentos e inspección veterinaria aseguran que la carne comercializada en mercados y supermercados del país cumpla con los más altos estándares.</p>
+        <a href="#contacto" class="btn-g">Solicitar información técnica</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="py-20 bg-ink-900 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5" style="background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,.5) 40px,rgba(201,168,76,.5) 41px)"></div>
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center fade">
+    <div class="flex items-center gap-4 justify-center mb-8">
+      <div class="flex-1 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent"></div>
+      <span class="text-gold-400 text-xs font-semibold tracking-[.2em] uppercase whitespace-nowrap">Trabajemos juntos</span>
+      <div class="flex-1 h-px bg-gradient-to-r from-transparent via-gold-500/40 to-transparent"></div>
+    </div>
+    <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-6">¿Necesita un proveedor de carne bovina <em class="text-gold-400 not-italic">confiable</em>?</h2>
+    <p class="text-ink-300 text-lg leading-relaxed mb-10 max-w-2xl mx-auto">Supermercados, restaurantes, procesadoras y distribuidores confían en Inducarne para su abastecimiento regular. Consultenos por volúmenes y condiciones comerciales.</p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#contacto" class="btn-g">Solicitar cotización</a>
+      <a href="tel:+59170000000" class="btn-o"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.6 4.9 2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Llamar ahora</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="py-28 bg-ink-900">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-20 fade">
+      <div class="goldline mx-auto"></div>
+      <p class="text-ink-400 text-xs tracking-[.25em] uppercase font-medium mb-3">Contacto Comercial</p>
+      <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white">Cotizá con Nosotros</h2>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-16">
+      <div class="fade">
+        <form id="cform" class="space-y-5" onsubmit="hSub(event)">
+          <div class="grid grid-cols-2 gap-5">
+            <div><label class="block text-ink-400 text-xs font-semibold tracking-widest uppercase mb-2">Nombre *</label><input type="text" class="finp" placeholder="Juan Pérez" required/></div>
+            <div><label class="block text-ink-400 text-xs font-semibold tracking-widest uppercase mb-2">Empresa</label><input type="text" class="finp" placeholder="Mi Empresa S.R.L."/></div>
+          </div>
+          <div class="grid grid-cols-2 gap-5">
+            <div><label class="block text-ink-400 text-xs font-semibold tracking-widest uppercase mb-2">Teléfono *</label><input type="tel" class="finp" placeholder="+591 7X XXX XXX" required/></div>
+            <div><label class="block text-ink-400 text-xs font-semibold tracking-widest uppercase mb-2">Email</label><input type="email" class="finp" placeholder="email@empresa.com"/></div>
+          </div>
+          <div><label class="block text-ink-400 text-xs font-semibold tracking-widest uppercase mb-2">Tipo de producto *</label>
+            <select class="finp" required>
+              <option value="" disabled selected>Seleccionar...</option>
+              <option>Carne Refrigerada (al por mayor)</option>
+              <option>Carne Madurada Premium</option>
+              <option>Cortes Traseros</option>
+              <option>Cortes Delanteros</option>
+              <option>Menudos Procesados</option>
+              <option>Servicio de Faena</option>
+              <option>Servicio de Desposte</option>
+              <option>Logística Frigorífica</option>
+              <option>Soy ganadero — quiero vender mi ganado</option>
+            </select>
+          </div>
+          <div><label class="block text-ink-400 text-xs font-semibold tracking-widest uppercase mb-2">Volumen mensual estimado</label>
+            <select class="finp">
+              <option value="" disabled selected>Seleccionar...</option>
+              <option>Menos de 500 kg</option>
+              <option>500 kg – 2.000 kg</option>
+              <option>2.000 kg – 10.000 kg</option>
+              <option>Más de 10.000 kg</option>
+              <option>Servicio puntual</option>
+            </select>
+          </div>
+          <div><label class="block text-ink-400 text-xs font-semibold tracking-widest uppercase mb-2">Mensaje</label><textarea class="finp h-28 resize-none" placeholder="Contenos sobre su necesidad..."></textarea></div>
+          <button type="submit" class="btn-g w-full justify-center py-4">Enviar consulta <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+          <p id="ok" class="hidden text-center text-gold-400 text-sm py-4 border border-gold-500/30 rounded-sm">✓ Mensaje enviado. Nos pondremos en contacto a la brevedad.</p>
+        </form>
+      </div>
+      <div class="fade flex flex-col justify-between" style="transition-delay:.2s">
+        <div class="space-y-8">
+          <div><div class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-3">Ubicación</div><p class="text-ink-300 leading-relaxed">Parque Industrial · Santa Cruz de la Sierra, Bolivia</p></div>
+          <div><div class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-3">Horario de Atención</div><p class="text-ink-300">Lunes a Viernes: 07:00 – 17:00</p><p class="text-ink-300">Sábados: 07:00 – 12:00</p></div>
+          <div><div class="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-3">Contacto Directo</div><a href="tel:+59170000000" class="text-ink-300 hover:text-gold-400 transition-colors block mb-1">+591 70 000 000</a><a href="mailto:ventas@inducarne.com" class="text-ink-300 hover:text-gold-400 transition-colors block">ventas@inducarne.com</a></div>
+          <a href="https://wa.me/59170000000?text=Hola%2C%20me%20interesa%20cotizar%20con%20Inducarne" target="_blank" class="flex items-center gap-3 p-4 bg-[#25D366]/10 border border-[#25D366]/30 rounded-sm hover:bg-[#25D366]/15 transition-colors">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 text-[#25D366] flex-shrink-0" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <div><div class="text-white text-sm font-semibold">WhatsApp Business</div><div class="text-ink-400 text-xs">Respuesta inmediata en horario comercial</div></div>
+          </a>
+        </div>
+        <div class="mt-8 h-48 bg-ink-800 border border-ink-700 rounded-sm flex items-center justify-center">
+          <div class="text-center"><svg class="text-ink-600 w-8 h-8 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg><p class="text-ink-500 text-xs">Parque Industrial · Santa Cruz, Bolivia</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-ink-950 border-t border-ink-800">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 bg-burg-800 border border-gold-500/30 flex items-center justify-center"><span class="text-gold-400 font-serif font-bold text-xl">I</span></div>
+          <div><div class="text-white font-serif font-semibold text-base">INDUCARNE</div><div class="text-gold-400/60 text-[9px] tracking-[.2em] uppercase">Industria Cárnica Nacional</div></div>
+        </div>
+        <p class="text-ink-500 text-sm leading-relaxed mb-4">Matadero Frigorífico Industrial S.R.L. Santa Cruz de la Sierra, Bolivia. Calidad y confianza desde hace más de 20 años.</p>
+        <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span><span class="text-ink-600 text-xs">Certificado SENASAG activo</span></div>
+      </div>
+      <div>
+        <div class="text-gold-400 text-xs font-semibold tracking-[.2em] uppercase mb-5">Empresa</div>
+        <ul class="space-y-3">
+          <li><a href="#nosotros" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Historia y Misión</a></li>
+          <li><a href="#inocuidad" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Inocuidad Alimentaria</a></li>
+          <li><a href="#nosotros" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Sustentabilidad</a></li>
+          <li><a href="#contacto" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-gold-400 text-xs font-semibold tracking-[.2em] uppercase mb-5">Productos</div>
+        <ul class="space-y-3">
+          <li><a href="#productos" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Carne Refrigerada</a></li>
+          <li><a href="#productos" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Carne Madurada</a></li>
+          <li><a href="#productos" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Cortes Traseros</a></li>
+          <li><a href="#productos" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Cortes Delanteros</a></li>
+          <li><a href="#productos" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Menudos Procesados</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-gold-400 text-xs font-semibold tracking-[.2em] uppercase mb-5">Servicios</div>
+        <ul class="space-y-3">
+          <li><a href="#servicios" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Faena Bovina</a></li>
+          <li><a href="#servicios" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Desposte</a></li>
+          <li><a href="#servicios" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Logística Frigorífica</a></li>
+          <li><a href="#ganaderos" class="text-ink-400 hover:text-gold-400 text-sm transition-colors">Para Ganaderos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-ink-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-ink-600 text-xs">© 2026 INDUCARNE — Industria Cárnica Nacional S.R.L. Todos los derechos reservados.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="text-ink-600 hover:text-ink-400 text-xs transition-colors">Política de Privacidad</a>
+        <a href="#" class="text-ink-600 hover:text-ink-400 text-xs transition-colors">Aviso Legal</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+  // Hamburger
+  const hbg=document.getElementById('hbg'),mm=document.getElementById('mmenu');
+  let mo=false;
+  hbg.addEventListener('click',()=>{
+    mo=!mo;mm.classList.toggle('open',mo);
+    const ls=hbg.querySelectorAll('.hb');
+    if(mo){ls[0].style.transform='rotate(45deg) translate(5px,5px)';ls[1].style.opacity='0';ls[2].style.transform='rotate(-45deg) translate(5px,-4px)';ls[2].style.width='24px';}
+    else{ls.forEach(l=>{l.style.transform='';l.style.opacity='';l.style.width='';})}
+  });
+  function cM(){mo=false;mm.classList.remove('open');hbg.querySelectorAll('.hb').forEach(l=>{l.style.transform='';l.style.opacity='';l.style.width='';})}
+
+  // Fade in
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+  // Counter
+  function animC(el){
+    const t=parseInt(el.dataset.t),d=1800,s=performance.now(),ease=t=>1-Math.pow(1-t,3);
+    function up(n){const p=Math.min((n-s)/d,1);el.textContent=Math.round(ease(p)*t).toLocaleString('es-BO');if(p<1)requestAnimationFrame(up);}
+    requestAnimationFrame(up);
+  }
+  const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){animC(e.target);co.unobserve(e.target);}}),{threshold:.5});
+  document.querySelectorAll('.cnt').forEach(el=>co.observe(el));
+
+  // Form
+  function hSub(e){
+    e.preventDefault();
+    const b=e.target.querySelector('button[type=submit]');b.textContent='Enviando...';b.disabled=true;
+    setTimeout(()=>{document.getElementById('ok').classList.remove('hidden');e.target.reset();b.innerHTML='Enviar consulta <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';b.disabled=false;},1200);
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}));
+</script>
+</body>
+</html>
